@@ -37,7 +37,7 @@ We receive data from simulator as an array of waypoints x and y coordinates in t
 vehicle_x[i] = map_x * cos_psi + map_y * sin_psi;
 vehicle_y[i] = -map_x * sin_psi + map_y * cos_psi;
 ```
-Optimization is used to predict the trajectory of the vehicle for the next N point. The cost function we used in a quadratic function of parameters of our model (namely: cross-track error, the error in the heading direction, the difference to the reference velocity, the actuator values and the difference of actuator values in adjacent time steps). When it comes to parameter selection, I used parameters which help to safely navigate the car in moderate speeds.
+Optimization is used to predict the trajectory of the vehicle for the next `N` points. The cost function we used in a quadratic function of parameters of our model (namely: cross-track error, the error in the heading direction, the difference to the reference velocity, the actuator values and the difference of actuator values in adjacent time steps). When it comes to parameter selection, I used parameters which help to safely navigate the car in moderate speeds.
 
 ### Timestep Length and Frequency
 
@@ -52,6 +52,11 @@ Hence, I used: `N=10` and `dt=0.15`
 ### Model Predictive Control with Latency
 
 In the model `N` and `dt` parameter were selected in order to agree with `100ms` delay. As mentioned above, several different values for the dt were tested but the one given in my model (`0.15s`) resulted in smooth simulation.
+
+### Result
+
+Following output shows the result of the my MPC.
+[![training_track](https://img.youtube.com/vi/IvzesZL4iMQ/0.jpg)](https://www.youtube.com/watch?v=IvzesZL4iMQ)
 
 ## Dependencies
 
