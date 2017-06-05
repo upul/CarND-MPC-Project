@@ -43,7 +43,7 @@ Optimization is used to predict the trajectory of the vehicle for the next `N` p
 
 Empirical technique was used to select suitable values for time length (N) and frequence (dt). For different values of N and dt I navigated the car in the and found out that:
 
-1. Small dt will result in unsafe car oscillation.
+1. Small `dt` will result in unsafe car oscillation.
 2. Large `dt` values result smooth drive however, car was failed to navigate through sharf road bends.
 3. Lange `N` values will result in inaccurate prediction values.
 
