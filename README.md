@@ -51,7 +51,7 @@ Hence, I used: `N=10` and `dt=0.15`
 
 ### Model Predictive Control with Latency
 
-In the model `N` and `dt` parameter were selected in order to agree with `100ms` delay. As mentioned above, several different values for the dt were tested but the one given in my model (`0.15s`) resulted in smooth simulation.
+In my PMC controller  `N = 10` and `dt=0.15` parameters were selected in order to comply with `100ms` delay. So I calculate the state of the car `dt` second from the current state and prediction controls initialized by that state.
 
 ### Result
 
