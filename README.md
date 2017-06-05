@@ -22,20 +22,36 @@ Also, we used following update equations:
 
 ```c
 fg[2 + x_start + i] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt);
-            fg[2 + y_start + i] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
-            fg[2 + psi_start + i] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
-            fg[2 + v_start + i] = v1 - (v0 + a0 * dt);
-            fg[2 + cte_start + i] =
-                    cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt));
-            fg[2 + epsi_start + i] =
-                    epsi1 - ((psi0 - psides0) + v0 * delta0 / Lf * dt);
+fg[2 + y_start + i] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt);
+fg[2 + psi_start + i] = psi1 - (psi0 + v0 * delta0 / Lf * dt);
+fg[2 + v_start + i] = v1 - (v0 + a0 * dt);
+fg[2 + cte_start + i] = cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt));
+fg[2 + epsi_start + i] = epsi1 - ((psi0 - psides0) + v0 * delta0 / Lf * dt);
 ```
 
 ### Polynomial Fitting and MPC Preprocessing
 
+We receive data from simulator as an array of waypoints x and y coordinates in the global coordinate system. However, we performed all computations in the vehicle coordinate system. So following transformation was used:
+
+```c
+vehicle_x[i] = map_x * cos_psi + map_y * sin_psi;
+vehicle_y[i] = -map_x * sin_psi + map_y * cos_psi;
+```
+Optimization is used to predict the trajectory of the vehicle for the next N point. The cost function we used in a quadratic function of parameters of our model (namely: cross-track error, the error in the heading direction, the difference to the reference velocity, the actuator values and the difference of actuator values in adjacent time steps). When it comes to parameter selection, I used parameters which help to safely navigate the car in moderate speeds.
+
 ### Timestep Length and Frequency
 
+Empirical technique was used to select suitable values for time length (N) and frequence (dt). For different values of N and dt I navigated the car in the and found out that:
+
+1. Small dt will result in unsafe car oscillation.
+2. Large `dt` values result smooth drive however, car was failed to navigate through sharf road bends.
+3. Lange `N` values will result in inaccurate prediction values.
+
+Hence, I used: `N=10` and `dt=0.15`
+
 ### Model Predictive Control with Latency
+
+In the model `N` and `dt` parameter were selected in order to agree with `100ms` delay. As mentioned above, several different values for the dt were tested but the one given in my model (`0.15s`) resulted in smooth simulation.
 
 ## Dependencies
 
