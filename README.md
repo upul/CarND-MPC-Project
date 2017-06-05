@@ -56,7 +56,11 @@ In the model `N` and `dt` parameter were selected in order to agree with `100ms`
 ### Result
 
 Following output shows the result of the my MPC.
-[![training_track](https://img.youtube.com/vi/IvzesZL4iMQ/0.jpg)](https://www.youtube.com/watch?v=IvzesZL4iMQ)
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=IvzesZL4iMQ">
+        <img src="https://img.youtube.com/vi/IvzesZL4iMQ/0.jpg" alt="video output">
+    </a>
+</p>
 
 ## Dependencies
 
