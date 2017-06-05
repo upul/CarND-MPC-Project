@@ -11,12 +11,12 @@ In this project we developed a Nonlinear Model Predictive Controller using C++ L
 
 Our model is based on kinematic bicycle model and for simplicity we ignored dynamical effects such as inertia, friction and torque. The model consists of (`x`, `y`, `psi`, `v`, `cte`, `epsi`) states.
 
-*. `x`: car position’s x coordinate
-*. `y`: car position’s y coordinate
-`Psi`: heading direction
-`v`: car’s velocity
-`cte`: the cross-track error
-`epsi`: the orientation error
+* `x`: car position’s x coordinate
+* `y`: car position’s y coordinate
+* `Psi`: heading direction
+* `v`: car’s velocity
+* `cte`: the cross-track error
+* `epsi`: the orientation error
 
 ### Polynomial Fitting and MPC Preprocessing
 
